@@ -4,21 +4,43 @@
 // ============================================================
 
 export const profile = {
-  name: "Your Name",
-  role: "Computer Vision & Embedded Systems Engineer",
+  name: "Ricardo Jose G. Vicente",
+  role: "Computer Engineer",
   tagline:
-    "I build machines that see and react — from trained models to the boards that run them in real time.",
-  location: "Manila, Philippines",
-  email: "you@example.com",
-  github: "https://github.com/yourhandle",
-  linkedin: "https://linkedin.com/in/yourhandle",
-  resumeUrl: "/resume.pdf", // drop a resume.pdf into the /public folder
+    "I build things that work — from computer vision on embedded hardware to web apps and reliable day-to-day support.",
+  location: "Iligan City, Philippines",
+  email: "ricardovicente183@gmail.com",
+  github: "https://github.com/gojira006",
+  linkedin: "https://www.linkedin.com/in/ricardo-jose-vicente-6254a6418/",
+  resumeUrl: "/resume (other).pdf", // drop a resume.pdf into the /public folder
+  photo: "/profile.jpg",
 };
 
 export const stats = [
   { label: "Years hands-on", value: "3+" },
   { label: "Deployed on-device models", value: "6" },
-  { label: "Platforms", value: "Jetson · STM32 · ESP32" },
+  { label: "Also open to", value: "Web development · Virtual Assistant work" },
+];
+
+export const focusAreas = [
+  {
+    title: "Machine Learning / Computer Vision",
+    description:
+      "Training and deploying vision models on real hardware, including resource-constrained edge devices like Jetson Nano.",
+    tools: ["PyTorch", "OpenCV", "TensorRT", "Jetson Nano"],
+  },
+  {
+    title: "Web Development",
+    description:
+      "Building and shipping web apps — including a full-stack e-learning platform with React and Node.js during an internship at Alliance Software Inc.",
+    tools: ["JavaScript / TypeScript", "React / Next.js", "HTML & CSS", "Git"],
+  },
+  {
+    title: "Virtual Assistant / Admin Support",
+    description:
+      "Reliable support for scheduling, documentation, research, and day-to-day admin work.",
+    tools: ["Google Workspace", "Documentation", "Scheduling", "Data entry"],
+  },
 ];
 
 export const skillGroups = [
@@ -48,10 +70,19 @@ export const skillGroups = [
     category: "Systems & Tools",
     items: ["C / C++", "Python", "Linux (Ubuntu/Yocto)", "Git", "Docker", "I2C / SPI / UART"],
   },
+  {
+    category: "Web Development",
+    items: ["JavaScript / TypeScript", "React / Next.js", "HTML & CSS", "REST APIs", "Vercel / GitHub"],
+  },
+  {
+    category: "Admin & VA Support",
+    items: ["Google Workspace", "Scheduling & calendar mgmt", "Documentation & write-ups", "Research", "Data entry"],
+  },
 ];
 
 export type Project = {
   slug: string;
+  category: "ML/CV & Embedded" | "Web Development" | "VA / Admin";
   title: string;
   summary: string;
   role: string;
@@ -67,66 +98,127 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "realtime-object-detection-jetson",
-    title: "Real-Time Object Detection on Jetson Nano",
+    category: "ML/CV & Embedded",
+    title: "Coffee Fruit Ripeness Classification and Sorting using YOLO11n on NVIDIA Jetson Nano",
     summary:
       "Trained a lightweight YOLO model and optimized it with TensorRT to run live object detection at usable frame rates on Jetson Nano hardware.",
     role: "Solo project — data collection, training, on-device deployment",
-    stack: ["PyTorch", "YOLOv8", "TensorRT", "OpenCV", "Jetson Nano"],
+    stack: ["PyTorch", "YOLO11n", "TensorRT", "OpenCV", "Jetson Nano"],
     specs: [
       { label: "Inference speed", value: "~22 FPS @ 416x416" },
-      { label: "Model size", value: "6.1 MB (quantized)" },
-      { label: "Classes", value: "8 custom classes" },
+      { label: "Model size", value: "1.5 MB (quantized)" },
+      { label: "Classes", value: "3 custom classes" },
+    ],
+    outcome: "The model is able to classify the coffee fruit into two classes: ripe, and underripe.",
+    repoUrl: "https://github.com/gojira006/Coffee-Fruit-Ripeness-Classification-and-Sorting",
+    featured: true,
+  },
+  {
+    slug: "smart-traffic-light-rtos",
+    category: "ML/CV & Embedded",
+    title: "Smart Traffic Light Signal Control Using RTOS",
+    summary:
+      "Built a FreeRTOS-based traffic light controller on Arduino that dynamically reprioritizes tasks based on ultrasonic vehicle detection while guaranteeing pedestrian requests are never starved.",
+    role: "Team project (3 members) — firmware, task scheduling, synchronization logic",
+    stack: ["Arduino", "FreeRTOS", "C", "HC-SR04", "Semaphores/Mutexes"],
+    specs: [
+      { label: "Detection threshold", value: "<10 cm (HC-SR04)" },
+      { label: "Task priorities", value: "Dynamic (1–3)" },
+      { label: "Sync primitives", value: "Binary semaphore + mutex" },
     ],
     outcome:
-      "Replace with the real result: e.g. what it detected, what it was used for, what you'd improve next.",
-    repoUrl: "https://github.com/yourhandle/repo-name",
+      "System dynamically extended green-light duration when a vehicle was present and reliably served pedestrian requests once traffic cleared, with no observed race conditions across shared state.",
+    repoUrl: "https://github.com/gojira006/Smart-Traffic-Light-Signal-Control-Using-RTOS-",
     featured: true,
   },
   {
-    slug: "autonomous-line-following-robot",
-    title: "Autonomous Line-Following Robot",
+    slug: "smart-trash-bin",
+    category: "ML/CV & Embedded",
+    title: "Smart Trash Bin with Touchless Lid and Fill-Level Monitoring",
     summary:
-      "Built a two-wheeled robot that combines a camera-based line detector with a PID controller for smooth, drift-free tracking on curved paths.",
-    role: "Solo project — mechanical build, control loop, tuning",
-    stack: ["Arduino", "OpenCV", "PID control", "DC motors + encoders"],
+      "Bare-metal ATmega328P firmware that opens a bin lid on hand detection and displays live fill level, built entirely around a non-blocking, interrupt-driven finite state machine.",
+    role: "Team project — embedded firmware, FSM design, timer-driven scheduling",
+    stack: ["ATmega328P", "Embedded C", "HC-SR04", "Sharp IR sensor", "3D printing"],
     specs: [
-      { label: "Control loop rate", value: "100 Hz" },
-      { label: "Max stable speed", value: "0.6 m/s" },
-      { label: "Sensors", value: "Camera + wheel encoders" },
+      { label: "Architecture", value: "3-state FSM" },
+      { label: "Timers used", value: "3 (sampling, PWM, lid timing)" },
+      { label: "Blocking delays", value: "None (fully interrupt-driven)" },
     ],
-    outcome: "Replace with the real result and what problem it solved or what you learned.",
-    repoUrl: "https://github.com/yourhandle/repo-name",
+    outcome:
+      "Delivered touchless lid operation and real-time fill-level display with no blocking calls in the main loop, keeping the system responsive at all times.",
+    repoUrl: "https://github.com/gojira006/-Smart-Trash-Bin-using-an-Interrupt-Driven-Embedded-System",
     featured: true,
   },
   {
-    slug: "gesture-controlled-robotic-arm",
-    title: "Gesture-Controlled Robotic Arm",
+    slug: "floodguard-water-detection",
+    category: "ML/CV & Embedded",
+    title: "FloodGuard: Smart Water Detection for Smart Cities",
     summary:
-      "Used hand-landmark tracking to map human hand gestures to a 4-DOF robotic arm's servo positions in real time.",
-    role: "Solo project — CV pipeline, kinematics, firmware",
-    stack: ["MediaPipe", "Python", "Servo motors", "Inverse kinematics"],
+      "An IoT flood-monitoring device combining ultrasonic and water-level sensing with an ESP8266 to push real-time flood risk alerts to the Blynk app.",
+    role: "Team project — sensor integration, cloud connectivity, risk classification logic",
+    stack: ["Arduino Uno", "ESP8266-01S", "Blynk", "HC-SR04", "HW-038"],
     specs: [
-      { label: "Degrees of freedom", value: "4" },
-      { label: "Latency", value: "~80 ms gesture-to-motion" },
-      { label: "Control", value: "Serial over USB" },
+      { label: "Risk levels", value: "4 (Normal → High)" },
+      { label: "Connectivity", value: "WiFi via ESP8266" },
+      { label: "Alerting", value: "Live push notifications" },
     ],
-    outcome: "Replace with the real result — what it could grip/do, demo video link, etc.",
-    repoUrl: "https://github.com/yourhandle/repo-name",
+    outcome:
+      "Correctly classified flood risk in real time and successfully pushed live sensor data and alerts to the Blynk app during testing.",
+    repoUrl: "https://github.com/gojira006/FLOODGUARD",
+    featured: false,
+  },
+  {
+    slug: "pid-water-level-controller",
+    category: "ML/CV & Embedded",
+    title: "LevelFlow: Water Pump Dispenser Using PID",
+    summary:
+      "A closed-loop liquid level controller that uses a tuned PID algorithm to drive a submersible pump via PWM, holding a user-set level without overshoot.",
+    role: "Team project — PID implementation and tuning, sensor feedback loop",
+    stack: ["Arduino Uno", "PID control", "HC-SR04", "IRF520 MOSFET module"],
+    specs: [
+      { label: "Control loop rate", value: "10 Hz (100 ms interval)" },
+      { label: "Tuned gains", value: "Kp=600, Ki=1.5, Kd=0.08" },
+      { label: "Setpoint range", value: "4–16 cm" },
+    ],
+    outcome:
+      "System converged smoothly on the target level without oscillation, correctly halting the pump within tolerance and resuming on drift.",
+    repoUrl: "https://github.com/gojira006/LevelFlow-Water-Pump-Dispenser-Using-PID",
+    featured: false,
+  },
+  {
+    slug: "automatic-window-light-control",
+    category: "ML/CV & Embedded",
+    title: "Daylight & Nighttime Detection for Automatic Window",
+    summary:
+      "An interrupt-driven AVR system that opens or closes a window based on ambient light, with LCD status feedback and a manual override button for accessibility.",
+    role: "Team project — AVR C firmware, interrupt/timer configuration",
+    stack: ["AVR ATmega328P", "Embedded C", "LDR", "Servo motor", "I2C LCD"],
+    specs: [
+      { label: "Interrupts used", value: "INT1 + PCINT2 + Timer0" },
+      { label: "Servo range", value: "0°–180°" },
+      { label: "Blocking delays", value: "None (fully interrupt-driven)" },
+    ],
+    outcome:
+      "Consistently opened/closed the window in response to light changes while supporting instant manual override, aimed at accessibility use cases.",
+    repoUrl: "https://github.com/gojira006/Daylight-Nighttime-Detection-for-Automatic-Window",
     featured: false,
   },
 ];
 
 export const experience = [
   {
-    period: "2024 — Present",
-    title: "Your Role",
-    org: "Company / Lab / University",
-    description: "One or two lines on what you actually did and shipped.",
+    period: "June 2025 — July 2025",
+    title: "Web Developer Intern",
+    org: "Alliance Software Inc.",
+    description: "Built a full-stack e-learning platform with a 4-member team using React and Node.js, implementing user authentication and profile management features across both client and server sides.",
   },
+];
+
+export const education = [
   {
-    period: "2023 — 2024",
-    title: "Your Role",
-    org: "Company / Lab / University",
-    description: "One or two lines on what you actually did and shipped.",
+    period: "2021 — 2026",
+    degree: "Bachelor of Science in Computer Engineering",
+    school: "Mindanao State University - Iligan Institute of Technology",
+    description: "Relevant coursework: Computer Vision, Machine Learning, Embedded Systems, Robotics, etc.",
   },
 ];
