@@ -82,7 +82,7 @@ export const skillGroups = [
 
 export type Project = {
   slug: string;
-  category: "ML/CV & Embedded" | "Web Development" | "VA / Admin";
+  category: "ML/CV & Embedded" | "Web Development" | "VA / Admin" | "AI / Software";
   title: string;
   summary: string;
   role: string;
@@ -202,6 +202,45 @@ export const projects: Project[] = [
       "Consistently opened/closed the window in response to light changes while supporting instant manual override, aimed at accessibility use cases.",
     repoUrl: "https://github.com/gojira006/Daylight-Nighttime-Detection-for-Automatic-Window",
     featured: false,
+  },
+
+  {
+    slug: "cafe-finder",
+    category: "Web Development",
+    title: "Cafe Finder",
+    summary:
+      "A web app that finds nearby cafes in real time using your location, pulling live data from OpenStreetMap — no paid API, no key required.",
+    role: "Solo project — full-stack build, API integration, UI/UX",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Leaflet", "OpenStreetMap Overpass API"],
+    specs: [
+      { label: "Data source", value: "OpenStreetMap (live, free)" },
+      { label: "Filters", value: "Distance, wifi, outdoor seating" },
+      { label: "Favorites", value: "Persisted locally" },
+    ],
+    outcome:
+      "Switched from a planned Google Places integration to OpenStreetMap's free Overpass API after weighing API costs against a portfolio project's needs — kept the app fully functional with zero ongoing cost and no API key required.",
+    repoUrl: "https://github.com/gojira006/cafe-finder",
+    demoUrl: "https://cafe-finder-virid.vercel.app/",
+    featured: true,
+  },
+
+  {
+    slug: "signal-zero-cost-voice-assistant",
+    category: "AI / Software",
+    title: "Signal — Zero-Cost Voice Assistant",
+    summary: "A voice assistant that listens, responds, and talks back — built entirely on free, browser-native tools, with no paid APIs, subscriptions, or backend server required.",
+    role: "Solo project — speech pipeline design, intent parsing, UI/UX design",
+    stack: ["Next.js", "TypeScript", "Web Speech API", "Open-Meteo API"],
+    specs: [
+      { label: "Pipeline", value: "Speech-to-text → intent matching → text-to-speech" },
+      { label: "Speech engine", value: "Browser-native Web Speech API" },
+      { label: "Weather & world time", value: "Open-Meteo geocoding + forecast API" },
+    ],
+    outcome:
+      "Learned to work within a strict constraint — no paid APIs — by leaning on browser-native Web Speech and Web Audio APIs instead of cloud services, including building a real-time audio-reactive waveform and debugging platform-specific quirks in speech recognition (like Chromium's internal state bugs and Brave's blocked speech backend) that don't show up in tutorials.",
+    repoUrl: "https://github.com/gojira006/voice-assistant",
+    demoUrl: "https://signalvoice-assistant.vercel.app/",
+    featured: true,
   },
 ];
 
