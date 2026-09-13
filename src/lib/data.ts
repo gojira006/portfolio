@@ -12,7 +12,7 @@ export const profile = {
   email: "ricardovicente183@gmail.com",
   github: "https://github.com/gojira006",
   linkedin: "https://www.linkedin.com/in/ricardo-jose-vicente-6254a6418/",
-  resumeUrl: "/resume (other).pdf", // drop a resume.pdf into the /public folder
+  resumeUrl: "/Resume (other).pdf", // drop a resume.pdf into the /public folder
   photo: "/profile.jpg",
 };
 
