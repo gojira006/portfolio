@@ -223,6 +223,24 @@ export const projects: Project[] = [
     demoUrl: "https://cafe-finder-virid.vercel.app/",
     featured: true,
   },
+  {
+    slug: "shortly-url-shortener",
+    category: "Web Development",
+    title: "Shortly: URL Shortener with Click Analytics",
+    summary:
+      "A full-stack link-shortening app that creates clean, shareable URLs and turns every visit into useful, privacy-conscious click analytics.",
+    role: "Solo project — product design, Next.js development, authentication, database design, and deployment",
+    stack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS", "Vercel"],
+    specs: [
+      { label: "Authentication", value: "Supabase email accounts" },
+      { label: "Link controls", value: "Custom aliases + expiry dates" },
+      { label: "Analytics", value: "Clicks, device, browser, country" },
+    ],
+    outcome:
+      "Built a complete workflow from authenticated link creation to server-side redirects and an analytics dashboard, while keeping sensitive service credentials on the server and avoiding IP-address storage.",
+    repoUrl: "https://github.com/gojira006/URL-Shortener",
+    featured: true,
+  },
 
   {
     slug: "signal-zero-cost-voice-assistant",
